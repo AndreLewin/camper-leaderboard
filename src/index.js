@@ -11,7 +11,7 @@ function UserList(props) {
         return (
             <tr key={index}>
                 <td>{index+1}</td>
-                <td>{user.username}   <!-- TODO Add picture --></td>
+                <td><img src={user.img} className="profilePicture" />   {user.username}</td>
                 <td>{user.recent}</td>
                 <td>{user.alltime}</td>
             </tr>
@@ -31,14 +31,14 @@ class Leaderboard extends React.Component {
 
     componentDidMount() {
         const urlTop100last30days = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
-        <!-- TODO fetch all time score -->
+        /* TODO fetch all time score */
         // Note: The JSON is already sorted on points. The app will only present and have no sorting logic.
         fetch(urlTop100last30days).then(res => res.json()).then(value => this.setState({json: value}));
     };
 
     render() {
         // console.log(this.state.json); // null for the first rendering: no data or fetching not finished
-        <!-- TODO Switch button -->
+        /* TODO Switch button --> */
         return  (
             <div className="container">
                 <table className="table">
