@@ -29,25 +29,41 @@ class Output extends React.Component {
 */
 
 
-function Leaderboard() {
-    return (
-        <Grid className="Leaderboard">
-            <Row className="rowFlex">
-                <Col xs={3} className="well colFlex">
-                    /* Rank */
-                </Col>
-                <Col xs={3} className="well colFlex">
-                    /* Camper Name */
-                </Col>
-                <Col xs={3} className="well colFlex">
-                    /* Points in the last 30 days */
-                </Col>
-                <Col xs={3} className="well colFlex">
-                    /* All time points */
-                </Col>
-            </Row>
-        </Grid>
-    )
+class Leaderboard extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            json: [],
+        };
+    }
+
+    componentDidMount() {
+        const urlTop100last30days = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
+        fetch(urlTop100last30days).then(res => res.json()).then(value => this.setState({json: value}));
+    };
+
+    render() {
+        console.log(this.state.json); // null for the first rendering: no data or fetching not finished
+
+        return  (
+            <Grid className="Leaderboard">
+                <Row className="rowFlex">
+                    <Col xs={3} className="well colFlex">
+                        /* Rank */
+                    </Col>
+                    <Col xs={3} className="well colFlex">
+                        /* Camper Name */
+                    </Col>
+                    <Col xs={3} className="well colFlex">
+                        /* Points in the last 30 days */
+                    </Col>
+                    <Col xs={3} className="well colFlex">
+                        /* All time points */
+                    </Col>
+                </Row>
+            </Grid>
+        );
+    }
 }
 
 
